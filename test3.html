@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Dục Kinh Tế & Văn Hóa Dân Tộc Nghệ An</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* === BIẾN MÀU SẮC (Brocade Theme) === */
+        :root {
+            --color-burgundy: #8B1C31;
+            --color-orange: #E65100;
+            --color-navy: #1A237E;
+            --color-light: #F9F6F0;
+            --color-dark: #2C3E50;
+            --color-white: #FFFFFF;
+        }
+
+        /* === CƠ BẢN & RESET === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Nunito', sans-serif;
+            color: var(--color-dark);
+            background-color: var(--color-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--color-burgundy);
+        }
+
+        /* === HOẠT TIẾT THỔ CẨM === */
+        .brocade-pattern {
+            height: 15px;
+            width: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--color-burgundy),
+                var(--color-burgundy) 15px,
+                var(--color-orange) 15px,
+                var(--color-orange) 30px,
+                var(--color-navy) 30px,
+                var(--color-navy) 45px
+            );
+        }
+
+        /* === NAVBAR === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--color-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-orange);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-orange);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* === HERO SECTION === */
+        #home {
+            height: 100vh;
+            /* ẢNH 1 ĐÃ THAY: Toàn cảnh miền núi */
+            background: linear-gradient(rgba(26, 35, 126, 0.6), rgba(139, 28, 49, 0.6)), url('https://images.baodantoc.vn/uploads/2021/Th%C3%A1ng%209/Ng%C3%A0y_30/Anh/34530387_728793510624524_208201421596655616_n.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: var(--color-white);
+        }
+
+        #home h1 {
+            color: var(--color-white);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+            max-width: 900px;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: var(--color-orange);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--color-orange);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* === CÁC SECTION CHUNG === */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-orange);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* === GRID LAYOUT & CARDS === */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--color-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-bottom: 4px solid var(--color-navy);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--color-orange);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            background-color: #eee;
+            object-position: top; /* Chỉnh để ưu tiên hiển thị phần trên của ảnh */
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--color-navy);
+        }
+
+        /* === SECTION 2: PHONG TỤC === */
+        .flex-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .flex-content {
+            flex: 1;
+        }
+
+        .flex-image {
+            flex: 1;
+            border-radius: 15px;
+            box-shadow: 20px 20px 0px var(--color-burgundy);
+            object-fit: cover;
+            max-height: 400px;
+            width: 100%;
+        }
+
+        /* === SECTION 3: ỨNG DỤNG === */
+        #ung-dung {
+            background-color: var(--color-navy);
+            color: var(--color-white);
+        }
+
+        #ung-dung .section-title {
+            color: var(--color-white);
+        }
+
+        .solution-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--color-orange);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+
+        .solution-card h3 {
+            color: var(--color-orange);
+            margin-bottom: 10px;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--color-dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* === ANIMATION === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            nav ul { display: none; }
+            #home h1 { font-size: 2.2rem; }
+            .flex-container { flex-direction: column; }
+            .flex-image { box-shadow: 10px 10px 0px var(--color-burgundy); }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="brocade-pattern"></div>
+
+    <nav>
+        <div class="logo">Văn Hóa & Giáo Dục</div>
+        <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#kinh-te">Hoạt động Kinh tế</a></li>
+            <li><a href="#phong-tuc">Phong tục</a></li>
+            <li><a href="#ung-dung">Ứng dụng Dạy học</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <h1 class="reveal">Tích hợp Văn hóa Dân tộc thiểu số Nghệ An vào Giáo dục Kinh tế</h1>
+        <p class="reveal">Giải pháp sư phạm đổi mới, đưa hơi thở của bản làng, chợ phiên và khung cửi vào từng bài học THPT, giúp môn học Kinh tế - Pháp luật trở nên sinh động và sâu sắc.</p>
+        <a href="#kinh-te" class="btn reveal">Khám phá ngay</a>
+    </header>
+
+    <section id="kinh-te">
+        <h2 class="section-title reveal">Các Nét Chấm Phá Kinh Tế Bản Địa</h2>
+        <div class="grid-3">
+            
+            <div class="card reveal">
+                <img src="https://static.vinwonders.com/production/hang-hoa-o-cho-phien.jpg" alt="Chợ phiên vùng cao">
+                <div class="card-body">
+                    <h3>Giao Thương Chợ Phiên</h3>
+                    <p>Chợ phiên vùng cao là sàn giao dịch kinh tế nguyên sơ phản ánh quy luật cung - cầu sống động. Đây là nơi giao thoa mật thiết giữa kinh tế và văn hóa bản địa.</p>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <img src="https://cand.com.vn/Files/Image/2015/02/24/17_thieunu250.jpg" alt="Người phụ nữ dệt thổ cẩm bằng khung cửi thô sơ">
+                <div class="card-body">
+                    <h3>Nghề Dệt Truyền Thống</h3>
+                    <p>Mô hình sản xuất hàng hóa tạo thặng dư và bảo tồn di sản. Người phụ nữ tỉ mẩn bên khung cửi thô sơ, biến sợi thành sản phẩm kinh tế mang tính nghệ thuật.</p>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <img src="https://media.baodautu.vn/Images/chicuong/2025/02/23/Untitled-1.JPG" alt="Dân tộc thiểu số canh tác">
+                <div class="card-body">
+                    <h3>Canh Tác Bền Vững</h3>
+                    <p>Hình ảnh gắn liền với phương thức sản xuất nông nghiệp trên nương rẫy, thể hiện tư duy kinh tế gắn với bảo vệ môi trường sinh thái của đồng bào.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="brocade-pattern"></div>
+
+    <section id="phong-tuc">
+        <div class="flex-container">
+            <div class="flex-content reveal">
+                <h2 class="section-title" style="text-align: left;">Gắn Kết Cộng Đồng Qua Điệu Nhảy Sạp</h2>
+                <p style="margin-bottom: 20px; font-size: 1.1rem;">Nhảy sạp (múa sạp) là nét sinh hoạt văn hóa đặc sắc, rộn rã thường thấy trong các dịp lễ hội của đồng bào dân tộc. Điệu múa này đòi hỏi sự nhịp nhàng, khéo léo và phối hợp cực kỳ ăn ý giữa người đập sạp và người nhảy.</p>
+                <p style="font-size: 1.1rem;">Nét văn hóa này là chất liệu tuyệt vời để giáo dục học sinh về <strong>Tinh thần làm việc nhóm (Teamwork)</strong> và <strong>Sự đồng bộ trong sản xuất</strong>. Nó cho thấy trong một tổ chức kinh tế hay cộng đồng, mỗi cá nhân đều phải tuân thủ nhịp độ và phối hợp chặt chẽ vì mục tiêu chung.</p>
+            </div>
+            
+            <img src="https://datafiles.nghean.gov.vn/nan-ubnd/1/quantritintuc202511/1-744886.jpg" alt="Văn hóa nhảy sạp" class="flex-image reveal">
+        </div>
+    </section>
+
+    <section id="ung-dung">
+        <h2 class="section-title reveal">Giải Pháp Vận Dụng Trong Dạy Học THPT</h2>
+        <div class="grid-3" style="display: block;">
+            
+            <div class="solution-card reveal">
+                <h3>1. Dạy bài "Thị trường và Cơ chế thị trường" (Lớp 10)</h3>
+                <p><strong>Hoạt động:</strong> Phân tích Case-study về hình ảnh <em>chợ phiên biên giới</em>. <br>
+                <strong>Mục tiêu:</strong> Học sinh phân tích được sự hình thành giá cả qua mặc cả, tính đa dạng của hàng hóa, và mối quan hệ cung - cầu mộc mạc nhất, thay vì chỉ học lý thuyết qua SGK.</p>
+            </div>
+
+            <div class="solution-card reveal">
+                <h3>2. Dạy bài "Mô hình sản xuất kinh doanh" (Lớp 10)</h3>
+                <p><strong>Hoạt động:</strong> Phân tích về <em>khung cửi và quy trình dệt thổ cẩm</em> của đồng bào. <br>
+                <strong>Mục tiêu:</strong> Giúp học sinh hiểu về mô hình kinh tế tập thể, cách huy động vốn, phân công lao động thô sơ và phương thức tìm kiếm thị trường tiêu thụ sản phẩm văn hóa.</p>
+            </div>
+
+            <div class="solution-card reveal">
+                <h3>3. Hoạt động Trải nghiệm Thực tế & Khởi nghiệp</h3>
+                <p><strong>Hoạt động:</strong> Tổ chức hội chợ "Mô phỏng Chợ vùng cao" ngay tại sân trường THPT. <br>
+                <strong>Mục tiêu:</strong> Học sinh hóa thân thành tiểu thương, thực hành thiết kế bao bì cho nông sản bản địa, lập kế hoạch kinh doanh nhỏ, tính toán doanh thu, lợi nhuận thực tế.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="brocade-pattern" style="margin-bottom: 20px;"></div>
+        <h3 style="color: white; margin-bottom: 10px;">Dự án Giáo dục Kinh tế & Văn hóa Nghệ An</h3>
+        <p>Thiết kế cho đề tài nghiên cứu sư phạm THPT &copy; 2026</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
